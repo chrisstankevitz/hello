@@ -30,12 +30,19 @@ INSTALL(
   DESTINATION
     ${hello_DIRNAME_lib}
   EXPORT
-    helloTargets
+    helloExports
   )
 
 INSTALL(
   EXPORT
-    helloTargets
+    helloExports
+  DESTINATION
+    ${hello_DIRNAME_lib}
+  )
+
+INSTALL(
+  FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/helloConfig.cmake
   DESTINATION
     ${hello_DIRNAME_lib}
   )

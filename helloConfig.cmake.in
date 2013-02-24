@@ -1,3 +1,11 @@
 @PACKAGE_INIT@
 
-INCLUDE("@hello_DIRNAME_lib@/helloTargets.cmake")
+SET_AND_CHECK(hello_INCLUDE_DIR @PACKAGE_hello_DIRNAME_include@ )
+
+IF(NOT TARGET hello)
+  INCLUDE(${CMAKE_CURRENT_LIST_DIR}/helloExports.cmake)
+ENDIF()
+
+SET(hello_INCLUDE_DIRS ${hello_INCLUDE_DIR} )
+
+SET(hello_LIBRARIES hello)
