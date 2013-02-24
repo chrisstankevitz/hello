@@ -1,7 +1,3 @@
 @PACKAGE_INIT@
 
-SET_AND_CHECK(hello_INCLUDE_DIRS "@hello_DIRNAME_include@")
-
-# TODO: Ensure the following line actually refers to the library files and
-#       not just the directory name
-SET_AND_CHECK(hello_LIBRARIES "@hello_DIRNAME_lib@")
+INCLUDE("@hello_DIRNAME_lib@/helloTargets.cmake")
