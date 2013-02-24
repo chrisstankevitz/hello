@@ -2,32 +2,40 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 PROJECT(hello)
 
-set (hello_VERSION_MAJOR 1)
-set (hello_VERSION_MINOR 1)
-
-ENABLE_TESTING()
+SET(hello_VERSION_MAJOR 1)
+SET(hello_VERSION_MINOR 1)
 
 ADD_LIBRARY(hello hello.cpp)
 
-CONFIGURE_FILE(helloConfig.cmake.in helloConfig.cmake)
+SET(hello_VERSION_STRING  "${hello_VERSION_MAJOR}.${hello_VERSION_MINOR}")
+SET(hello_DIRNAME         "hello-${hello_VERSION_STRING}")
+SET(hello_DIRNAME_lib     "lib/${hello_DIRNAME}")
+SET(hello_DIRNAME_include "include/${hello_DIRNAME}")
+
+INCLUDE(CMakePackageConfigHelpers)
+
+CONFIGURE_PACKAGE_CONFIG_FILE(
+  "${CMAKE_CURRENT_SOURCE_DIR}/helloConfig.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/helloConfig.cmake"
+  INSTALL_DESTINATION
+    ${hello_DIRNAME_lib}
+  PATH_VARS
+    hello_DIRNAME_lib
+    hello_DIRNAME_include
+  )
 
 INSTALL(
   TARGETS
-  hello
+    hello
   DESTINATION
-  lib/hello-${hello_VERSION_MAJOR}.${hello_VERSION_MINOR}
+    ${hello_DIRNAME_lib}
+  EXPORT
+    helloTargets
   )
 
 INSTALL(
   FILES
-  helloConfig.cmake
+    hello.h
   DESTINATION
-  lib/hello-${hello_VERSION_MAJOR}.${hello_VERSION_MINOR}
-  )
-
-INSTALL(
-  FILES
-  hello.h
-  DESTINATION
-  include/hello-${hello_VERSION_MAJOR}.${hello_VERSION_MINOR}
+    ${hello_DIRNAME_include}
   )
