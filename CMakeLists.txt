@@ -24,13 +24,19 @@ CONFIGURE_PACKAGE_CONFIG_FILE(
     hello_DIRNAME_include
   )
 
+WRITE_BASIC_PACKAGE_VERSION_FILE(
+  "${CMAKE_CURRENT_BINARY_DIR}/helloConfigVersion.cmake"
+  VERSION ${hello_VERSION_STRING}
+  COMPATIBILITY AnyNewerVersion
+  )
+
 INSTALL(
-  TARGETS
-    hello
-  DESTINATION
-    ${hello_DIRNAME_lib}
-  EXPORT
-    helloExports
+TARGETS
+  hello
+DESTINATION
+  ${hello_DIRNAME_lib}
+EXPORT
+  helloExports
   )
 
 INSTALL(
@@ -43,6 +49,7 @@ INSTALL(
 INSTALL(
   FILES
     ${CMAKE_CURRENT_BINARY_DIR}/helloConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/helloConfigVersion.cmake
   DESTINATION
     ${hello_DIRNAME_lib}
   )
