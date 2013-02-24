@@ -34,6 +34,13 @@ INSTALL(
   )
 
 INSTALL(
+  EXPORT
+    helloTargets
+  DESTINATION
+    ${hello_DIRNAME_lib}
+  )
+
+INSTALL(
   FILES
     hello.h
   DESTINATION
