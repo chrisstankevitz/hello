@@ -51,5 +51,5 @@ INSTALL(
   FILES
     hello.h
   DESTINATION
-    ${hello_DIRNAME_include}
+    ${hello_DIRNAME_include}/hello
   )
